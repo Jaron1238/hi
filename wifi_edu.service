@@ -1,0 +1,17 @@
+[Unit]
+Description=WiFi Educational Tool (Sniffer + Deauth + FakeAP)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/wifi_edu.py --iface mon0 --auto --deauth --confirm --fake-aps --debug
+Restart=on-failure
+RestartSec=10
+User=root
+WorkingDirectory=/home/pi
+
+# Sicherstellen, dass genug Ressourcen da sind
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
